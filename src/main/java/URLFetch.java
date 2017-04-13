@@ -52,6 +52,21 @@ import javax.net.ssl.HttpsURLConnection;
  * @author Christopher Schultz
  * @version 2012-03-26
  */
+
+/*
+TODO:
+  Fix 30x redirects so that the data in the currect response is consumed first
+  Fix Relative redirects such as ~/newpage.html
+  Basic auth (base64 encoding support) - Requires Java 8+
+  Add Set-Cookie header support
+  Proxy support (?)
+  Add support for Head method
+  Add support for rest crud operations - specifically Delete method
+  Exit non zero on error
+  Add silent/non interactive option for scripting
+  Compare output against wget or curl for string parsing compatibility
+ */
+
 public class URLFetch
 {
 
@@ -605,7 +620,7 @@ public class URLFetch
             SSLContext sc = SSLContext.getInstance("SSL");
 
             sc.init(null, trustAllCerts, new java.security.SecureRandom());
-	    
+
             HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
         }
         catch (KeyManagementException kme)
