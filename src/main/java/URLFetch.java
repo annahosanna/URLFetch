@@ -55,7 +55,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 /*
 TODO:
-Fix 30x redirects so that the data in the currect response is consumed first
+Fix 30x redirects so that the data in the currect response is consumed first (Use null output stream)
 Fix Relative redirects such as ~/newpage.html
 Basic auth (base64 encoding support) - Requires Java 8+
 Add Set-Cookie header support
