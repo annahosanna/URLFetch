@@ -269,8 +269,6 @@ public class URLFetch
       switch(conn.getResponseCode())
       {
         case 301:
-        url = new URL(conn.getHeaderField("Location"));
-        break;
         case 302:
         case 307:
         // Retrieve the URL in the "Location" header using
