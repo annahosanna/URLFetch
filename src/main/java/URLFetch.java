@@ -285,6 +285,7 @@ public class URLFetch
         reconnect = false;
         break;
       }
+    // End of while loop
     }
 
     if(printHeaders)
