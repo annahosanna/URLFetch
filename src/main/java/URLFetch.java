@@ -181,17 +181,19 @@ public class URLFetch
     while(reconnect)
     {
       if (connected == false) {
+        // read all of the pending data out
         c = url.openConnection();
+        connected = true;
       } else {
-        ine = new NullInputStreamReader(new InputStreamReader(conn.getErrorStream()));
+        NullInputStreamReader ine = new NullInputStreamReader(new InputStreamReader(conn.getErrorStream()));
         int bytesError = 0;
         bytesError = ine.read();
         ine.close();
         
-        ino = new NullInputStreamReader(new InputStreamReader(conn.getInputStream()));
+        NullInputStreamReader ino = new NullInputStreamReader(new InputStreamReader(conn.getInputStream()));
         int bytesRead = 0;
         bytesRead = ino.read();
-        ine.close();
+        ino.close();
 
         c = url.openConnection();
       }
