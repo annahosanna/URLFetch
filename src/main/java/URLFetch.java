@@ -176,9 +176,25 @@ public class URLFetch
     boolean reconnect = true; // See redirect handling below
     long elapsed = 0;
     HttpURLConnection conn = null;
+    boolean connected = false;
+    URLConnection c = null;
     while(reconnect)
     {
-      URLConnection c = url.openConnection();
+      if (connected == false) {
+        c = url.openConnection();
+      } else {
+        ine = new NullInputStreamReader(new InputStreamReader(conn.getErrorStream()));
+        int bytesError = 0;
+        bytesError = ine.read();
+        ine.close();
+        
+        ino = new NullInputStreamReader(new InputStreamReader(conn.getInputStream()));
+        int bytesRead = 0;
+        bytesRead = ino.read();
+        ine.close();
+
+        c = url.openConnection();
+      }
 
       if(!(c instanceof HttpURLConnection))
       throw new IOException("Expected HttpURLConnection, got " + c);
